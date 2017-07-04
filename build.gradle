@@ -1,0 +1,44 @@
+subprojects {
+    group 'ru.training.lab'
+    version '1.0-SNAPSHOT'
+
+    apply plugin: 'java'
+
+    sourceCompatibility = 1.8
+    targetCompatibility = 1.8
+
+    repositories {
+        mavenCentral()
+//        mavenLocal()
+//        jcenter()
+//        maven { url 'https://jitpack.io' }
+    }
+
+    configurations {
+        testCompile.extendsFrom compileOnly
+    }
+
+    // this turns logging on in tests:
+    test.testLogging.showStandardStreams = true
+
+    dependencies {
+
+        compile 'org.apache.logging.log4j:log4j-api:+',
+                'org.apache.logging.log4j:log4j-core:+',
+                'org.openjdk.jmh:jmh-core:+',
+                'io.vavr:vavr:+'//,
+        //            'com.aol.simplereact:cyclops-react:+'//,
+        //            'com.github.Vyacheslav-Lapin:Hegel:master-SNAPSHOT'//,
+
+        compileOnly 'org.projectlombok:lombok:+',
+                'org.openjdk.jmh:jmh-generator-annprocess:+'//,
+        //            'edu.washington.cs.types.checker:checker-framework:+'
+
+        testCompile 'org.junit.jupiter:junit-jupiter-api:+',
+                'org.hamcrest:java-hamcrest:+'
+    }
+}
+
+task wrapper(type: Wrapper) {
+    gradleVersion = '4.0'
+}
